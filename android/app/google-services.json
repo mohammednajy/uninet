@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386040793012",
+    "project_id": "uninet-32c4a",
+    "storage_bucket": "uninet-32c4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386040793012:android:69b5c63128da5ab71b94e1",
+        "android_client_info": {
+          "package_name": "com.example.uninet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386040793012-4imkg6mmpn40tjdu4dcqmokh7odc7o2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9MdWH2htGy8asTWj_up6MtAF7skuSpUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386040793012-4imkg6mmpn40tjdu4dcqmokh7odc7o2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
