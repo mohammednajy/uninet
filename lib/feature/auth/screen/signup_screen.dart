@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uninet/feature/auth/controller/auth_controller.dart';
+import 'package:uninet/router/routing.dart';
 import 'package:uninet/utils/validation.dart';
 
 import '../../../utils/constant.dart';
-import '../../../utils/style_manager.dart';
 import '../../widgets/textField_widget.dart';
 import '../widgets/social_media_widget.dart';
+import 'package:uninet/utils/extensions.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -22,6 +25,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void dispose() {
     super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   @override
@@ -32,9 +37,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          const Text(
+          Text(
             'Please fill the following information to create new account',
-            style: StyleManager.label,
+            style: context.style.headlineMedium!.copyWith(fontSize: 14),
           ),
           SizedBox(
             height: height / 40,
@@ -62,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             labelText: 'Confirm your Password',
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'this field is required';
+                return 'This field is required';
               } else if (value != passwordController.text) {
                 return 'not match';
               }
@@ -73,9 +78,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
+          Text(
             'Must be at least 8 characters with one number and one special character',
-            style: StyleManager.labelSmall,
+            style: context.style.headlineMedium!.copyWith(fontSize: 12),
           ),
           CheckboxListTile(
               controlAffinity: ListTileControlAffinity.leading,
@@ -89,14 +94,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   checkListValue = value ?? false;
                 });
               },
-              title: const Text(
+              title: Text(
                 'Confirm you are above 18 years old',
-                style: StyleManager.smallBody,
+                style: context.style.labelSmall!.copyWith(
+                  fontSize: 12,
+                ),
               )),
           ElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  print('succffully');
+                  context.read<AuthController>().clickToNavigate(0);
                 }
               },
               child: const Text(
@@ -105,17 +112,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
+          Text(
             'by clicking sign up you agree to the terms and conditions and our privacy policy',
             textAlign: TextAlign.center,
-            style: StyleManager.labelSmall,
+            style: context.style.headlineMedium!.copyWith(fontSize: 12),
           ),
           SizedBox(
             height: height / 40,
           ),
-          const Text(
+          Text(
             'Or continue with',
-            style: StyleManager.label,
+            style: context.style.headlineMedium!.copyWith(fontSize: 14),
             textAlign: TextAlign.center,
           ),
           const SizedBox(

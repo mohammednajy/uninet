@@ -36,7 +36,7 @@ class UniNet extends StatelessWidget {
       navigatorKey: RouteManager.navigatorKey,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: RouteName.authRoute,
+      initialRoute: RouteName.completeProfileScreen,
       theme: ThemeManager.lightTheme,
     );
   }

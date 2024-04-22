@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uninet/utils/extensions.dart';
 
 import '../../router/routing.dart';
-import '../../utils/style_manager.dart';
 
 
 class TitleWidget extends StatelessWidget {
@@ -12,24 +12,27 @@ class TitleWidget extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-            onPressed: () {
-              RouteManager.pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              size: 35,
-            )),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          title,
-          style: StyleManager.headline,
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Row(
+        children: [
+          IconButton(
+              onPressed: () {
+                RouteManager.pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                size: 35,
+              )),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            title,
+            style: context.style.headlineLarge,
+          )
+        ],
+      ),
     );
   }
 }

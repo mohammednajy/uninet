@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uninet/router/routes_name.dart';
 import 'package:uninet/router/routing.dart';
 import 'package:uninet/utils/constant.dart';
-import 'package:uninet/utils/style_manager.dart';
 import 'package:uninet/utils/validation.dart';
+import 'package:uninet/utils/extensions.dart';
 
 import '../../widgets/textField_widget.dart';
 import '../widgets/social_media_widget.dart';
@@ -22,6 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -33,9 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          const Text(
+          Text(
             'Please fill below information to access your account!',
-            style: StyleManager.label,
+            style: context.style.headlineMedium!.copyWith(fontSize: 14),
           ),
           SizedBox(
             height: height / 8,
@@ -84,9 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: height / 8,
           ),
-          const Text(
+          Text(
             'Or continue with',
-            style: StyleManager.label,
+            style: context.style.headlineMedium!.copyWith(fontSize: 14),
             textAlign: TextAlign.center,
           ),
           const SizedBox(

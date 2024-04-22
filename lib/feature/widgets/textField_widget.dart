@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uninet/utils/constant.dart';
 
-import '../../utils/style_manager.dart';
+import 'package:uninet/utils/extensions.dart';
 
 class TextFieldWidget extends StatefulWidget {
   const TextFieldWidget({
@@ -12,6 +12,10 @@ class TextFieldWidget extends StatefulWidget {
     this.filedKey,
     this.controller,
     this.isPassword = false,
+    this.readOnly,
+    this.lines,
+    this.onTap,
+    this.suffixIcon,
     super.key,
   });
   final String labelText;
@@ -20,6 +24,10 @@ class TextFieldWidget extends StatefulWidget {
   final String? Function(String?)? validator;
   final Key? filedKey;
   final TextEditingController? controller;
+  final int? lines;
+  final bool? readOnly;
+  final void Function()? onTap;
+  final Widget? suffixIcon;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -34,28 +42,33 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       children: [
         Text(
           widget.labelText,
-          style: StyleManager.label,
+          style: context.style.headlineMedium!.copyWith(fontSize: 14),
         ),
         TextFormField(
+          onTap: widget.onTap,
+          readOnly: widget.readOnly ?? false,
+          minLines: widget.lines,
+          maxLines: widget.lines,
           controller: widget.controller,
           key: widget.filedKey,
           obscureText: visibility,
           validator: widget.validator,
           decoration: InputDecoration(
               hintText: widget.hintText,
-              suffixIcon: widget.isPassword
-                  ? IconButton(
-                      onPressed: () {
-                        setState(() {
-                          visibility = !visibility;
-                        });
-                      },
-                      icon: SvgPicture.asset(
-                        visibility
-                            ? AssetPath.visibilityOff
-                            : AssetPath.visibilityOn,
-                      ))
-                  : const SizedBox()),
+              suffixIcon: widget.suffixIcon ??
+                  (widget.isPassword
+                      ? IconButton(
+                          onPressed: () {
+                            setState(() {
+                              visibility = !visibility;
+                            });
+                          },
+                          icon: SvgPicture.asset(
+                            visibility
+                                ? AssetPath.visibilityOff
+                                : AssetPath.visibilityOn,
+                          ))
+                      : const SizedBox())),
         )
       ],
     );

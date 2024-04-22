@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uninet/utils/constant.dart';
-import 'package:uninet/utils/style_manager.dart';
+import 'package:uninet/utils/extensions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,9 +14,9 @@ class HomeScreen extends StatelessWidget {
         toolbarHeight: 55,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Feed',
-          style: StyleManager.headline,
+          style: context.style.headlineLarge,
         ),
         actions: [
           Ink(
@@ -28,7 +29,15 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                const url = "whatsapp://send?phone=+972592663280";
+
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url));
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
               icon: SvgPicture.asset(AssetPath.notificationIcon),
             ),
           ),
@@ -68,14 +77,14 @@ class HomeScreen extends StatelessWidget {
                 leading: Container(
                   height: 45,
                   width: 45,
-                  child: Icon(
-                    Icons.person,
-                    size: 35,
-                    color: Colors.grey,
-                  ),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(
+                    Icons.person,
+                    size: 35,
+                    color: Colors.grey,
                   ),
                 ),
                 title: const Text('Mohammed naji'),
@@ -84,16 +93,16 @@ class HomeScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   itemBuilder: (context) => [
-                    PopupMenuItem(
-                      child: Text('Edit your post'),
+                    const PopupMenuItem(
                       value: 0,
+                      child: Text('Edit your post'),
                     ),
-                    PopupMenuDivider(
+                    const PopupMenuDivider(
                       height: 15,
                     ),
-                    PopupMenuItem(
-                      child: Text('Delete your post'),
+                    const PopupMenuItem(
                       value: 1,
+                      child: Text('Delete your post'),
                     )
                   ],
                 )),
@@ -128,10 +137,10 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         SvgPicture.asset(AssetPath.likeIcon),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text('1.6K')
+                        const Text('1.6K')
                       ],
                     )),
                 InkWell(
@@ -139,10 +148,10 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         SvgPicture.asset(AssetPath.commentIcon),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text('900')
+                        const Text('900')
                       ],
                     )),
                 InkWell(
@@ -150,10 +159,10 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         SvgPicture.asset(AssetPath.retweetIcon),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text('100')
+                        const Text('100')
                       ],
                     )),
                 IconButton(

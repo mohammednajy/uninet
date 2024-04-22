@@ -6,6 +6,7 @@ import 'package:uninet/utils/constant.dart';
 import 'package:uninet/utils/style_manager.dart';
 import 'package:pinput/pinput.dart';
 import 'package:uninet/utils/validation.dart';
+import 'package:uninet/utils/extensions.dart';
 
 import '../../widgets/title_widget.dart';
 
@@ -109,7 +110,7 @@ class _CodeOtpScreenState extends State<CodeOtpScreen> {
               textAlign: TextAlign.center,
               text: TextSpan(
                   text: 'Did not receive the OTP? ',
-                  style: StyleManager.label,
+                  style: context.style.headlineMedium!.copyWith(fontSize: 14),
                   children: [
                     TextSpan(
                         text: 'Resend.',

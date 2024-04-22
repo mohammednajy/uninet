@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uninet/router/routes_name.dart';
 import 'package:uninet/router/routing.dart';
 import 'package:uninet/utils/constant.dart';
-import 'package:uninet/utils/style_manager.dart';
+import 'package:uninet/utils/extensions.dart';
 import 'package:uninet/utils/validation.dart';
 
 import '../../widgets/textField_widget.dart';
@@ -24,15 +24,15 @@ class _RestPasswordScreenState extends State<RestPasswordScreen> {
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         children: [
-          const TitleWidget(
+          TitleWidget(
             title: 'Reset your Password',
           ),
           const SizedBox(
             height: 14,
           ),
-          const Text(
+          Text(
             'Please enter your registered email to reset your password!',
-            style: StyleManager.label,
+            style: context.style.headlineMedium!.copyWith(fontSize: 14),
           ),
           SizedBox(
             height: height / 5,
@@ -58,9 +58,9 @@ class _RestPasswordScreenState extends State<RestPasswordScreen> {
           SizedBox(
             height: height / 4,
           ),
-          const Text(
+          Text(
             'Remember your Password?',
-            style: StyleManager.label,
+            style: context.style.headlineMedium!.copyWith(fontSize: 14),
             textAlign: TextAlign.center,
           ),
           const SizedBox(

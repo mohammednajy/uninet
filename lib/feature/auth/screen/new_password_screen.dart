@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uninet/utils/validation.dart';
+import 'package:uninet/utils/extensions.dart';
 
 import '../../../utils/constant.dart';
-import '../../../utils/style_manager.dart';
 import '../../widgets/textField_widget.dart';
 import '../../widgets/title_widget.dart';
 
@@ -40,9 +40,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
+           Text(
             'Please enter the new password with confirmation and don’t share it with others!',
-            style: StyleManager.label,
+            style: context.style.headlineMedium!.copyWith(fontSize: 14),
           ),
           SizedBox(
             height: height / 7,
@@ -73,9 +73,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
+           Text(
             'Must be at least 8 characters with one number and one special character',
-            style: StyleManager.labelSmall,
+            style:context.style.headlineMedium!.copyWith(fontSize: 12),
           ),
           const SizedBox(
             height: 10,

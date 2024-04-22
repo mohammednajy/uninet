@@ -5,6 +5,8 @@ class RouteName {
   static const String newPasswordScreen = 'newPasswordScreen';
   static const String mainAppScreen = 'mainAppScreen';
   static const String verificationScreen = 'verificationScreen';
+  static const String completeProfileScreen = 'completeProfileScreen';
+
 
   
 }

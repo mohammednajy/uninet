@@ -21,11 +21,11 @@ extension ValidationExt on String {
   String? get isValidPassword {
     String? result;
 
-    final passwordRegExp =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    // final passwordRegExp =
+    //     RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (isEmpty) {
       result = 'This field is required';
-    } else if (!(passwordRegExp.hasMatch(this))) {
+    } else if (this.length < 8) {
       result = 'enter valid password';
     }
     return result;
@@ -44,10 +44,8 @@ extension ValidationExt on String {
 
   String? get isValidOtp {
     String? result;
-    if (isEmpty) {
-      result = 'all fields required';
-    } else if (this.length < 5) {
-      result = 'ادخل الكود كامل';
+    if (isEmpty || this.length < 5) {
+      result = 'plz, fill all fields';
     } else if (!RegExp(r'^[0-9]+$').hasMatch(this)) {
       result = 'just number value';
     }
