@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/router/routes_name.dart';
-import 'package:uninet/router/routing.dart';
-import 'package:uninet/utils/constant.dart';
-import 'package:uninet/utils/extensions.dart';
-import 'package:uninet/utils/validation.dart';
+import 'package:uninet/core/router/routes_name.dart';
+import 'package:uninet/core/router/routing.dart';
+import 'package:uninet/core/utils/constant.dart';
+import 'package:uninet/core/utils/extensions.dart';
+import 'package:uninet/core/utils/validation.dart';
 
 import '../../widgets/textField_widget.dart';
 import '../../widgets/title_widget.dart';

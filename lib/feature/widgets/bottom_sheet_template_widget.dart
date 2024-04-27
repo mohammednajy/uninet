@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/router/routing.dart';
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/router/routing.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
 class BottomSheetTemplateWidget extends StatelessWidget {
   const BottomSheetTemplateWidget(

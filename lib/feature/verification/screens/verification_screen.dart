@@ -1,9 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:uninet/feature/verification/widgets/upload_file_widget.dart';
-import 'package:uninet/router/routes_name.dart';
-import 'package:uninet/router/routing.dart';
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/router/routes_name.dart';
+import 'package:uninet/core/router/routing.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
 import '../../widgets/title_widget.dart';
 

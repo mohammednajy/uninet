@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
-import '../../router/routing.dart';
+import '../../core/router/routing.dart';
 
 
 class TitleWidget extends StatelessWidget {

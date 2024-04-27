@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uninet/feature/auth/controller/auth_controller.dart';
-import 'package:uninet/router/routing.dart';
-import 'package:uninet/utils/validation.dart';
+import 'package:uninet/core/utils/validation.dart';
 
-import '../../../utils/constant.dart';
+import '../../../core/utils/constant.dart';
 import '../../widgets/textField_widget.dart';
 import '../widgets/social_media_widget.dart';
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

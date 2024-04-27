@@ -2,10 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:uninet/router/route.dart';
-import 'package:uninet/router/routes_name.dart';
-import 'package:uninet/router/routing.dart';
-import 'package:uninet/utils/theme_manager.dart';
+import 'package:uninet/core/router/route.dart';
+import 'package:uninet/core/router/routes_name.dart';
+import 'package:uninet/core/router/routing.dart';
+import 'package:uninet/core/services/remoteServices/firebase_init.dart';
+import 'package:uninet/core/utils/theme_manager.dart';
 
 import 'firebase_options.dart';
 
@@ -19,6 +20,7 @@ void main() async {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   ));
+  setUp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
@@ -36,7 +38,7 @@ class UniNet extends StatelessWidget {
       navigatorKey: RouteManager.navigatorKey,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: RouteName.completeProfileScreen,
+      initialRoute: RouteName.mainAppScreen,
       theme: ThemeManager.lightTheme,
     );
   }

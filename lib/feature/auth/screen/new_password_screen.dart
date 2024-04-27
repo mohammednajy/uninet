@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/utils/validation.dart';
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/utils/validation.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
-import '../../../utils/constant.dart';
+import '../../../core/utils/constant.dart';
 import '../../widgets/textField_widget.dart';
 import '../../widgets/title_widget.dart';
 

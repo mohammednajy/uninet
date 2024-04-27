@@ -10,7 +10,7 @@ extension ValidationExt on String {
     return result;
   }
 
-  String? get isValidName {
+  String? get isValidField {
     String? result;
     if (isEmpty) {
       result = 'This field is required';
@@ -25,7 +25,7 @@ extension ValidationExt on String {
     //     RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (isEmpty) {
       result = 'This field is required';
-    } else if (this.length < 8) {
+    } else if (this.length < 5) {
       result = 'enter valid password';
     }
     return result;

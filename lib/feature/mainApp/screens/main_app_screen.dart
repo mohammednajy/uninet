@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:uninet/core/router/routes_name.dart';
+import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/feature/home/screens/home_screen.dart';
-import 'package:uninet/utils/constant.dart';
+import 'package:uninet/core/utils/constant.dart';
 
 class MainAppScreen extends StatefulWidget {
   const MainAppScreen({super.key});
@@ -98,7 +100,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
       ),
       floatingActionButton: InkWell(
         onTap: () {
-          print('object');
+          RouteManager.pushNamed(RouteName.createNewPostScreen);
         },
         child: Container(
           height: 65,

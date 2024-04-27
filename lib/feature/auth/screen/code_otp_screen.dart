@@ -1,12 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:uninet/router/routes_name.dart';
-import 'package:uninet/router/routing.dart';
-import 'package:uninet/utils/constant.dart';
-import 'package:uninet/utils/style_manager.dart';
+import 'package:uninet/core/router/routes_name.dart';
+import 'package:uninet/core/router/routing.dart';
+import 'package:uninet/core/utils/constant.dart';
 import 'package:pinput/pinput.dart';
-import 'package:uninet/utils/validation.dart';
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/utils/validation.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
 import '../../widgets/title_widget.dart';
 

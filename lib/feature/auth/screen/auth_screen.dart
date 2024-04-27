@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:uninet/feature/auth/controller/auth_controller.dart';
 import 'package:uninet/feature/auth/screen/login_screen.dart';
 import 'package:uninet/feature/auth/screen/signup_screen.dart';
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

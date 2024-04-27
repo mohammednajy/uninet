@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/utils/constant.dart';
+import 'package:uninet/core/utils/constant.dart';
 
 class ThemeManager {
   static final lightTheme = ThemeData(

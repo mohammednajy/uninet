@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:uninet/utils/constant.dart';
+import 'package:uninet/core/utils/constant.dart';
 
-import 'package:uninet/utils/extensions.dart';
+import 'package:uninet/core/utils/extensions.dart';
 
 class TextFieldWidget extends StatefulWidget {
   const TextFieldWidget({
@@ -13,7 +13,7 @@ class TextFieldWidget extends StatefulWidget {
     this.controller,
     this.isPassword = false,
     this.readOnly,
-    this.lines,
+    this.lines = 1,
     this.onTap,
     this.suffixIcon,
     super.key,
