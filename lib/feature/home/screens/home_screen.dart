@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uninet/core/utils/constant.dart';
 import 'package:uninet/core/utils/extensions.dart';
+import 'package:uninet/feature/widgets/decorated_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,47 +20,20 @@ class HomeScreen extends StatelessWidget {
           style: context.style.headlineLarge,
         ),
         actions: [
-          Ink(
-            height: 55,
-            padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: IconButton(
-              onPressed: () async {
-                const url = "whatsapp://send?phone=+972592663280";
-
-                if (await canLaunchUrl(Uri.parse(url))) {
-                  await launchUrl(Uri.parse(url));
-                } else {
-                  throw 'Could not launch $url';
-                }
-              },
-              icon: SvgPicture.asset(AssetPath.notificationIcon),
-            ),
+          DecoratedButton(
+            path: AssetPath.notificationIcon,
+            onPressed: () {
+              print('object');
+            },
           ),
           const SizedBox(
             width: 10,
           ),
-          Ink(
-            height: 55,
-            padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                AssetPath.searchIcon,
-              ),
-            ),
-          ),
+          DecoratedButton(
+              path: AssetPath.searchIcon,
+              onPressed: () {
+                print('object');
+              }),
           const SizedBox(
             width: 10,
           ),

@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uninet/core/router/routes_name.dart';
 import 'package:uninet/core/router/routing.dart';
+import 'package:uninet/feature/community/screens/community_screen.dart';
 import 'package:uninet/feature/home/screens/home_screen.dart';
 import 'package:uninet/core/utils/constant.dart';
+import 'package:uninet/feature/messages/screens/messages_screen.dart';
+import 'package:uninet/feature/profile/screens/profile_screen.dart';
 
 class MainAppScreen extends StatefulWidget {
   const MainAppScreen({super.key});
@@ -23,12 +26,14 @@ class _MainAppScreenState extends State<MainAppScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
     const HomeScreen(),
+    const CommunityScreen(),
+    const MessagesScreen(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
-    print('userData ${FirebaseAuth.instance.currentUser} ');
     return Scaffold(
-      body: screens[0],
+      body: screens[selectedIndex],
       bottomNavigationBar: Container(
         height: 75,
         decoration: BoxDecoration(
