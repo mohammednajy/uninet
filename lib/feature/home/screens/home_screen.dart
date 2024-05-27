@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:uninet/core/utils/constant.dart';
 import 'package:uninet/core/utils/extensions.dart';
 import 'package:uninet/feature/widgets/decorated_button.dart';
@@ -23,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           DecoratedButton(
             path: AssetPath.notificationIcon,
             onPressed: () {
-              print('object');
+              GoogleSignIn().disconnect();
             },
           ),
           const SizedBox(

@@ -15,7 +15,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('number of build');
     return Consumer<AuthController>(
       builder: (context, data, child) => Form(
         key: data.formKey,
@@ -67,8 +66,7 @@ class LoginScreen extends StatelessWidget {
             ElevatedButton(
                 onPressed: () async {
                   if (data.formKey.currentState!.validate()) {
-                   data.singUp();
-                    // RouteManager.pushNamed(RouteName.verificationScreen);
+                    await data.login();
                   }
                 },
                 child: const Text(
@@ -103,11 +101,11 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(
                   width: 15,
                 ),
-                SocialMediaWidget(
-                  icon: AssetPath.appleIcon,
-                  color: Colors.black,
-                  onTap: () {},
-                ),
+                // SocialMediaWidget(
+                //   icon: AssetPath.appleIcon,
+                //   color: Colors.black,
+                //   onTap: () {},
+                // ),
               ],
             ),
           ],

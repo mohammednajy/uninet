@@ -54,5 +54,11 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
     </application>
+    <queries>
+        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" /> 
+        <provider android:authorities="com.facebook.orca.provider.PlatformProvider" />  
+    </queries>
 </manifest>

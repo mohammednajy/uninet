@@ -33,7 +33,7 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
-  bool visibility = false;
+  bool visibility = true;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           maxLines: widget.lines,
           controller: widget.controller,
           key: widget.filedKey,
-          obscureText: visibility,
+          obscureText: widget.isPassword ? visibility : false,
           validator: widget.validator,
           decoration: InputDecoration(
               hintText: widget.hintText,

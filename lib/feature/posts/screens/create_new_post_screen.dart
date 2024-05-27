@@ -3,7 +3,7 @@ import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/core/utils/constant.dart';
 import 'package:uninet/core/utils/extensions.dart';
 import 'package:uninet/feature/widgets/bottom_sheet_template_widget.dart';
-import 'package:uninet/feature/widgets/title_widget.dart';
+import 'package:uninet/feature/widgets/headline_appbar.dart';
 
 class CreateNewPostScreen extends StatefulWidget {
   const CreateNewPostScreen({super.key});
@@ -17,11 +17,9 @@ class _CreateNewPostScreenState extends State<CreateNewPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: HeadlineAppBar(title: 'New Post'),
       body: ListView(
         children: [
-          const TitleWidget(
-            title: 'New Post',
-          ),
           const Divider(
             thickness: 1,
           ),

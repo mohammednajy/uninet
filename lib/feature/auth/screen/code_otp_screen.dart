@@ -6,8 +6,9 @@ import 'package:uninet/core/utils/constant.dart';
 import 'package:pinput/pinput.dart';
 import 'package:uninet/core/utils/validation.dart';
 import 'package:uninet/core/utils/extensions.dart';
+import 'package:uninet/feature/auth/screen/new_password_screen.dart';
 
-import '../../widgets/title_widget.dart';
+import '../../widgets/headline_appbar.dart';
 
 class CodeOtpScreen extends StatefulWidget {
   const CodeOtpScreen({super.key});
@@ -34,13 +35,15 @@ class _CodeOtpScreenState extends State<CodeOtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const HeadlineAppBar(
+        title: 'Check your Email',
+      ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
         children: [
-          const TitleWidget(
-            title: 'Check your Email',
-          ),
           SizedBox(
             height: height / 5,
           ),

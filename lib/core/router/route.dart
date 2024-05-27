@@ -6,9 +6,11 @@ import 'package:uninet/feature/auth/screen/auth_screen.dart';
 import 'package:uninet/feature/auth/screen/code_otp_screen.dart';
 import 'package:uninet/feature/auth/screen/new_password_screen.dart';
 import 'package:uninet/feature/auth/screen/reset_password_screen.dart';
+import 'package:uninet/feature/auth/screen/reset_passwrod_info_screen.dart';
 import 'package:uninet/feature/mainApp/screens/main_app_screen.dart';
 import 'package:uninet/feature/posts/screens/create_new_post_screen.dart';
 import 'package:uninet/feature/profile/screens/complete_profile_screen.dart';
+import 'package:uninet/feature/verification/controller/verification_controller.dart';
 import 'package:uninet/feature/verification/screens/verification_screen.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -22,7 +24,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       );
     case RouteName.resetPasswordRoute:
       return MaterialPageRoute(
-        builder: (context) => const RestPasswordScreen(),
+        builder: (context) => ChangeNotifierProvider(
+            create: (context) => AuthController(),
+            child: const RestPasswordScreen()),
       );
     case RouteName.codeOtpScreen:
       return MaterialPageRoute(
@@ -48,6 +52,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case RouteName.createNewPostScreen:
       return MaterialPageRoute(
         builder: (context) => const CreateNewPostScreen(),
+      );
+      case RouteName.resetPasswordInfoScreen:
+      return MaterialPageRoute(
+        builder: (context) => const ResetPasswordInfoScreen(),
       );
     default:
       return MaterialPageRoute(

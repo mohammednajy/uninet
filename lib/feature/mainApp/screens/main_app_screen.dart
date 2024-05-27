@@ -114,7 +114,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
             color: ColorManager.blue,
             shape: BoxShape.circle,
             border: Border.all(
-              color: Colors.blue.shade200,
+              color: Colors.blue.shade100,
               width: 5,
             ),
           ),

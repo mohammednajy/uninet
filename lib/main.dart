@@ -2,13 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
 import 'package:uninet/core/router/route.dart';
 import 'package:uninet/core/router/routes_name.dart';
 import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/core/services/remoteServices/firebase_init.dart';
 import 'package:uninet/core/utils/theme_manager.dart';
+import 'package:uninet/feature/verification/controller/verification_controller.dart';
 
 import 'firebase_options.dart';
+
+// final vlaue = FirebaseAuth.instance.authStateChanges();
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +29,9 @@ void main() async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  runApp(const UniNet());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => VerificationController())
+  ], child: const UniNet()));
   FlutterNativeSplash.remove();
 }
 
@@ -38,7 +44,7 @@ class UniNet extends StatelessWidget {
       navigatorKey: RouteManager.navigatorKey,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: RouteName.mainAppScreen,
+      initialRoute: RouteName.authRoute,
       theme: ThemeManager.lightTheme,
     );
   }

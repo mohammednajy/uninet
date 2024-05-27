@@ -5,7 +5,7 @@ import 'package:uninet/core/router/routes_name.dart';
 import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/core/utils/extensions.dart';
 
-import '../../widgets/title_widget.dart';
+import '../../widgets/headline_appbar.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -19,25 +19,28 @@ class _VerificationScreenState extends State<VerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const HeadlineAppBar(
+        title: 'Verification',
+        leading: false,
+      ),
       body: Padding(
-        padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 40, bottom: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TitleWidget(
-              title: 'Verification',
-            ),
-            const SizedBox(
-              height: 14,
-            ),
-            Text(
-              'Please upload your documents',
-              style: context.style.headlineMedium!.copyWith(fontSize: 14),
-            ),
             Expanded(
               child: ListView(
                 children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Please upload your documents',
+                    style: context.style.headlineMedium!.copyWith(fontSize: 14),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     decoration: BoxDecoration(
@@ -91,7 +94,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
             ),
             Center(
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    RouteManager.goToAndRemove(RouteName.mainAppScreen);
+                  },
                   child: Text(
                     'Skip for now',
                     style: context.style.bodyMedium,

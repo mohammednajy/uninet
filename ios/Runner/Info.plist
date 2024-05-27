@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+		<key>GIDClientID</key>
+        <string>386040793012-h3gmv8qast5vf1cs0tt6eds8dgkd7ltm</string>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
@@ -49,5 +51,42 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>CFBundleURLTypes</key>
+		<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+			<string>fb1119788449169355</string>
+			</array>
+		</dict>
+		</array>
+		<key>FacebookAppID</key>
+		<string>1119788449169355</string>
+		<key>FacebookClientToken</key>
+		<string>da4f3f2ff8b815c10186175305a0fd66</string>
+		<key>FacebookDisplayName</key>
+		<string>UniNet</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		</array>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>com.googleusercontent.apps.386040793012-h3gmv8qast5vf1cs0tt6eds8dgkd7ltm</string>
+				</array>
+			</dict>
+		</array>
+		<key>NSCameraUsageDescription</key>
+		<string>Allow access to camera</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Allow access to microphone for video recording</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Allow access to photo library</string>
 	</dict>
 </plist>

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../router/routing.dart';
@@ -8,6 +7,7 @@ class ColorManager {
   static const Color borderColor = Color(0xFFEDEDED);
   static const Color green = Color(0xFF76D676);
   static const Color blue = Color(0xFF4169E1);
+  static const Color background = Color(0xFFF5F5F5);
 }
 
 class AssetPath {
@@ -29,6 +29,7 @@ class AssetPath {
   static const String commentIcon = '${baseIcon}comment_icon.svg';
   static const String retweetIcon = '${baseIcon}retweet_icon.svg';
   static const String shareIcon = '${baseIcon}share_icon.svg';
+  static const String settingsIcon = '${baseIcon}setting_icon.svg';
 
 // this for image path
   static const String checkEmailImage = '${baseImage}check_email_image.png';

@@ -19,7 +19,7 @@ loadingWithText({
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      text ?? 'يرجى الانتظار....   ',
+                      text ?? 'waiting ....',
                     ),
                     const SpinKitDualRing(
                       color: ColorManager.blue,

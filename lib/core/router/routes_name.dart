@@ -7,4 +7,6 @@ class RouteName {
   static const String verificationScreen = 'verificationScreen';
   static const String completeProfileScreen = 'completeProfileScreen';
   static const String createNewPostScreen = 'createNewPostScreen';
+  static const String resetPasswordInfoScreen = 'resetPasswordInfoScreen';
+
 }

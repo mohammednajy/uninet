@@ -5,14 +5,19 @@ class ThemeManager {
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
     fontFamily: 'Poppins',
-    scaffoldBackgroundColor: const Color(0xFFF5F5F5),
+    scaffoldBackgroundColor: ColorManager.background,
+    appBarTheme: const AppBarTheme(
+      surfaceTintColor: Colors.white,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
         textStyle: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
+        
         backgroundColor: ColorManager.blue,
         minimumSize: const Size(double.infinity, 50),
         shape: RoundedRectangleBorder(

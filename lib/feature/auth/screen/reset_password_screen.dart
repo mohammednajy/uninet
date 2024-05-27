@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uninet/core/router/routes_name.dart';
 import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/core/utils/constant.dart';
 import 'package:uninet/core/utils/extensions.dart';
 import 'package:uninet/core/utils/validation.dart';
+import 'package:uninet/feature/auth/controller/auth_controller.dart';
+import 'package:uninet/feature/auth/screen/new_password_screen.dart';
 
 import '../../widgets/textField_widget.dart';
-import '../../widgets/title_widget.dart';
+import '../../widgets/headline_appbar.dart';
 
 class RestPasswordScreen extends StatefulWidget {
   const RestPasswordScreen({super.key});
@@ -17,19 +20,17 @@ class RestPasswordScreen extends StatefulWidget {
 
 class _RestPasswordScreenState extends State<RestPasswordScreen> {
   GlobalKey<FormFieldState> filedKey = GlobalKey();
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const HeadlineAppBar(
+        title: 'Reset Your Password',
+      ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
-          TitleWidget(
-            title: 'Reset your Password',
-          ),
-          const SizedBox(
-            height: 14,
-          ),
           Text(
             'Please enter your registered email to reset your password!',
             style: context.style.headlineMedium!.copyWith(fontSize: 14),
@@ -42,6 +43,7 @@ class _RestPasswordScreenState extends State<RestPasswordScreen> {
             hintText: 'example@gmail.com',
             labelText: 'Your Email',
             validator: (value) => value!.isValidEmail,
+            controller: emailController,
           ),
           const SizedBox(
             height: 25,
@@ -49,7 +51,9 @@ class _RestPasswordScreenState extends State<RestPasswordScreen> {
           ElevatedButton(
               onPressed: () {
                 if (filedKey.currentState!.validate()) {
-                  RouteManager.pushNamed(RouteName.codeOtpScreen);
+                  context
+                      .read<AuthController>()
+                      .sendRestPasswordEmail(email: emailController.text);
                 }
               },
               child: const Text(
