@@ -53,26 +53,6 @@
 		<false/>
 		<key>CFBundleURLTypes</key>
 		<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-			<string>fb1119788449169355</string>
-			</array>
-		</dict>
-		</array>
-		<key>FacebookAppID</key>
-		<string>1119788449169355</string>
-		<key>FacebookClientToken</key>
-		<string>da4f3f2ff8b815c10186175305a0fd66</string>
-		<key>FacebookDisplayName</key>
-		<string>UniNet</string>
-		<key>LSApplicationQueriesSchemes</key>
-		<array>
-		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
-		</array>
-		<key>CFBundleURLTypes</key>
-		<array>
 			<dict>
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
@@ -88,5 +68,32 @@
 		<string>Allow access to microphone for video recording</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Allow access to photo library</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>fb1119788449169355</string>
+				</array>
+			</dict>
+		</array>
+		<key>FacebookAppID</key>
+		<string>1119788449169355</string>
+		<key>FacebookClientToken</key>
+		<string>da4f3f2ff8b815c10186175305a0fd66</string>
+		<key>FacebookDisplayName</key>
+		<string>UniNet</string>
+			<key>FacebookAutoLogAppEventsEnabled</key>
+		<string>TRUE</string>
+		<key>FacebookAdvertiserIDCollectionEnabled</key>
+		<string>TRUE</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>fbapi</string>
+			<string>fb-messenger-share-api</string>
+			<string>fbauth2</string>
+			<string>fbshareextension</string>
+		</array>
+
 	</dict>
 </plist>

@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uninet/core/router/routes_name.dart';
 import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/core/utils/constant.dart';
 import 'package:uninet/core/utils/extensions.dart';
 import 'package:uninet/core/utils/validation.dart';
-import 'package:uninet/feature/auth/controller/auth_controller.dart';
-import 'package:uninet/feature/auth/screen/new_password_screen.dart';
+import 'package:uninet/feature/auth/provider/reset_password_provider.dart';
+import 'package:uninet/feature/widgets/loading_widget.dart';
+import 'package:uninet/feature/widgets/snackbar_widget.dart';
 
 import '../../widgets/textField_widget.dart';
 import '../../widgets/headline_appbar.dart';
 
-class RestPasswordScreen extends StatefulWidget {
+class RestPasswordScreen extends HookConsumerWidget {
   const RestPasswordScreen({super.key});
 
   @override
-  State<RestPasswordScreen> createState() => _RestPasswordScreenState();
-}
-
-class _RestPasswordScreenState extends State<RestPasswordScreen> {
-  GlobalKey<FormFieldState> filedKey = GlobalKey();
-  TextEditingController emailController = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final filedKey = useMemoized(GlobalKey<FormFieldState>.new);
+    final emailController = useTextEditingController();
+    ref.listen(resetPasswordProvider, (prev, next) {
+      next.when(data: (value) {
+        RouteManager.pop();
+        showSnackBarCustom(
+            text: 'Email send successfully, check you email',
+            backgroundColor: Colors.green);
+        RouteManager.pushNamed(RouteName.resetPasswordInfoScreen);
+        print(value);
+      }, error: (e, _) {
+        Navigator.pop(context);
+        showSnackBarCustom(text: e.toString());
+      }, loading: () {
+        loadingWithText();
+      });
+    });
     return Scaffold(
       appBar: const HeadlineAppBar(
         title: 'Reset Your Password',
@@ -51,9 +63,9 @@ class _RestPasswordScreenState extends State<RestPasswordScreen> {
           ElevatedButton(
               onPressed: () {
                 if (filedKey.currentState!.validate()) {
-                  context
-                      .read<AuthController>()
-                      .sendRestPasswordEmail(email: emailController.text);
+                  ref
+                      .read(resetPasswordProvider.notifier)
+                      .sendResetPassword(email: emailController.text);
                 }
               },
               child: const Text(

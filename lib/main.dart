@@ -2,13 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uninet/core/router/route.dart';
 import 'package:uninet/core/router/routes_name.dart';
 import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/core/services/remoteServices/firebase_init.dart';
 import 'package:uninet/core/utils/theme_manager.dart';
-import 'package:uninet/feature/verification/controller/verification_controller.dart';
 
 import 'firebase_options.dart';
 
@@ -29,16 +28,14 @@ void main() async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => VerificationController())
-  ], child: const UniNet()));
+  runApp(const ProviderScope(child: UniNet()));
   FlutterNativeSplash.remove();
 }
 
 class UniNet extends StatelessWidget {
   const UniNet({super.key});
 
-  @override
+@override
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: RouteManager.navigatorKey,
