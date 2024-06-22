@@ -1,42 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:uninet/core/router/routes_name.dart';
+import 'package:uninet/core/router/routing.dart';
 import 'package:uninet/core/utils/constant.dart';
 import 'package:uninet/core/utils/extensions.dart';
-import 'package:uninet/feature/widgets/decorated_button.dart';
+import 'package:uninet/feature/community/screens/community_screen.dart';
+import 'package:uninet/feature/profile/screens/likes_screen.dart';
+import 'package:uninet/feature/profile/screens/media_screen.dart';
+import 'package:uninet/feature/profile/screens/wall_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends HookConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedScreen = useState(0);
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 55,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          'Profile',
-          style: context.style.headlineLarge,
-        ),
-        actions: [
-          DecoratedButton(
-            path: AssetPath.notificationIcon,
-            onPressed: () {
-              print('object');
-            },
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          DecoratedButton(
-              path: AssetPath.settingsIcon,
-              onPressed: () {
-                print('object');
-              }),
-          const SizedBox(
-            width: 10,
-          ),
-        ],
+      appBar: MainAppBarWidget(
+        title: 'Profile',
+        onPressedNotification: () {},
+        onPressedRight: () {
+          RouteManager.pushNamed(RouteName.settingsScreen);
+        },
+        iconPath: AssetPath.settingsIcon,
       ),
       body: Column(
         children: [
@@ -102,144 +89,60 @@ class ProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    selectedScreen.value = 0;
+                  },
                   child: Text(
                     'Wall',
                     style: context.style.labelSmall!.copyWith(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: selectedScreen.value == 0
+                          ? FontWeight.bold
+                          : FontWeight.w400,
+                      color: selectedScreen.value == 0
+                          ? ColorManager.blue
+                          : Colors.grey,
                     ),
                   )),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    selectedScreen.value = 1;
+                  },
                   child: Text(
                     'Media',
-                    style: context.style.labelSmall,
+                    style: context.style.labelSmall!.copyWith(
+                      fontWeight: selectedScreen.value == 1
+                          ? FontWeight.bold
+                          : FontWeight.w400,
+                      color: selectedScreen.value == 1
+                          ? ColorManager.blue
+                          : Colors.grey,
+                    ),
                   )),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    selectedScreen.value = 2;
+                  },
                   child: Text(
                     'Likes',
-                    style: context.style.labelSmall,
+                    style: context.style.labelSmall!.copyWith(
+                      fontWeight: selectedScreen.value == 2
+                          ? FontWeight.bold
+                          : FontWeight.w400,
+                      color: selectedScreen.value == 2
+                          ? ColorManager.blue
+                          : Colors.grey,
+                    ),
                   )),
             ],
           ),
           const Divider(
             thickness: 1,
           ),
-          Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) => ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Container(
-                        height: 45,
-                        width: 45,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Icon(
-                          Icons.person,
-                          size: 35,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      title: const Text('Mohammed naji'),
-                      subtitle: const Text('23 min'),
-                      trailing: PopupMenuButton<int>(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        itemBuilder: (context) => [
-                          const PopupMenuItem(
-                            value: 0,
-                            child: Text('Edit your post'),
-                          ),
-                          const PopupMenuDivider(
-                            height: 15,
-                          ),
-                          const PopupMenuItem(
-                            value: 1,
-                            child: Text('Delete your post'),
-                          )
-                        ],
-                      )),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 190,
-                    width: double.infinity,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Image.asset(
-                      AssetPath.postImage,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                          onTap: () {},
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(AssetPath.likeIcon),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text('1.6K')
-                            ],
-                          )),
-                      InkWell(
-                          onTap: () {},
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(AssetPath.commentIcon),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text('900')
-                            ],
-                          )),
-                      InkWell(
-                          onTap: () {},
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(AssetPath.retweetIcon),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text('100')
-                            ],
-                          )),
-                      IconButton(
-                        onPressed: () {},
-                        icon: SvgPicture.asset(AssetPath.shareIcon),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              itemCount: 15,
-              separatorBuilder: (context, index) => const Divider(
-                thickness: 1,
-              ),
-            ),
-          )
+          [
+            const WallScreen(),
+            const MediaScreen(),
+            const LikesScreen()
+          ][selectedScreen.value]
         ],
       ),
     );

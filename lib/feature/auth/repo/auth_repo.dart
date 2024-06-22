@@ -23,6 +23,8 @@ class AuthRepository {
       }
       return left('unexpected error occurred, try agin');
     } on FirebaseAuthException catch (e) {
+      print('=================================');
+      print(e);
       return left(AuthException.handleLoginException(e));
     } catch (e) {
       return left('Something went wrong');
@@ -33,7 +35,7 @@ class AuthRepository {
       {required String email, required String password}) async {
     try {
       final credential =
-          await getIt<FirebaseService>().auth.createUserWithEmailAndPassword(
+          await ref.read(firebaseAuthProvider).createUserWithEmailAndPassword(
                 email: email,
                 password: password,
               );
@@ -117,7 +119,7 @@ class AuthRepository {
   Future<Either<String, bool>> sendResetPassword(
       {required String email}) async {
     try {
-      await getIt<FirebaseService>().auth.sendPasswordResetEmail(email: email);
+      await ref.read(firebaseAuthProvider).sendPasswordResetEmail(email: email);
       return right(true);
     } on FirebaseAuthException catch (e) {
       return left(AuthException.handleLoginException(e));
@@ -130,8 +132,8 @@ class AuthRepository {
     required User user,
   }) async {
     try {
-      await getIt<FirebaseService>()
-          .firestore
+      await ref
+          .read(firebaseFireStoreProvider)
           .collection('users')
           .add(UserModel(
             email: user.email!,

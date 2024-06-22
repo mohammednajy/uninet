@@ -8,5 +8,7 @@ class RouteName {
   static const String completeProfileScreen = 'completeProfileScreen';
   static const String createNewPostScreen = 'createNewPostScreen';
   static const String resetPasswordInfoScreen = 'resetPasswordInfoScreen';
+  static const String settingsScreen = 'settingsScreen';
+
 
 }

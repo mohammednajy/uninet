@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uninet/core/utils/validation.dart';
 import 'package:uninet/feature/auth/provider/singup_provider.dart';
+import 'package:uninet/feature/auth/repo/auth_repo.dart';
 import 'package:uninet/feature/widgets/loading_widget.dart';
 
 import '../../../core/utils/constant.dart';
@@ -25,7 +26,7 @@ class SignUpScreen extends HookConsumerWidget {
         Navigator.pop(context);
         showSnackBarCustom(
             text: 'Registered successfully', backgroundColor: Colors.green);
-        print(user);
+        ref.read(authIndexRoute.notifier).state = 0;
       }, error: (e, _) {
         Navigator.pop(context);
         showSnackBarCustom(text: e.toString() ?? '');
@@ -51,6 +52,7 @@ class SignUpScreen extends HookConsumerWidget {
             labelText: 'Your Email',
             validator: (value) => value!.isValidEmail,
             controller: emailController,
+            keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
             height: 15,
@@ -61,6 +63,7 @@ class SignUpScreen extends HookConsumerWidget {
             controller: passwordController,
             validator: (value) => value!.isValidPassword,
             isPassword: true,
+            keyboardType: TextInputType.visiblePassword,
           ),
           const SizedBox(
             height: 15,
@@ -68,6 +71,7 @@ class SignUpScreen extends HookConsumerWidget {
           TextFieldWidget(
             hintText: '••••••••••••',
             labelText: 'Confirm your Password',
+            keyboardType: TextInputType.visiblePassword,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'This field is required';
@@ -103,16 +107,16 @@ class SignUpScreen extends HookConsumerWidget {
               )),
           ElevatedButton(
             onPressed: () async {
-              if (checkboxValue) {
-                if (formKey.currentState!.validate()) {
+              if (formKey.currentState!.validate()) {
+                if (checkboxValue) {
                   ref.read(singUpProvider.notifier).singUp(
                       email: emailController.text,
                       password: passwordController.text);
+                } else {
+                  showSnackBarCustom(
+                      text: 'Please, Confirm you are above 18 years old',
+                      backgroundColor: Colors.grey);
                 }
-              } else {
-                showSnackBarCustom(
-                    text: 'Please, Confirm you are above 18 years old',
-                    backgroundColor: Colors.grey);
               }
             },
             child: const Text(

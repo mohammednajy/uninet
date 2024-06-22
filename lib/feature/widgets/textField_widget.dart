@@ -17,6 +17,7 @@ class TextFieldWidget extends StatefulWidget {
     this.onTap,
     this.suffixIcon,
     this.onEditingComplete,
+    this.keyboardType,
     super.key,
   });
   final String labelText;
@@ -30,6 +31,7 @@ class TextFieldWidget extends StatefulWidget {
   final void Function()? onTap;
   final Widget? suffixIcon;
   final void Function()? onEditingComplete;
+  final TextInputType? keyboardType;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -52,10 +54,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           minLines: widget.lines,
           maxLines: widget.lines,
           controller: widget.controller,
+          keyboardType: widget.keyboardType,
           key: widget.filedKey,
           obscureText: widget.isPassword ? visibility : false,
           validator: widget.validator,
-          onEditingComplete:widget.onEditingComplete ,
+          onEditingComplete: widget.onEditingComplete,
           decoration: InputDecoration(
               hintText: widget.hintText,
               suffixIcon: widget.suffixIcon ??

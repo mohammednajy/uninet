@@ -23,7 +23,6 @@ class LoginScreen extends HookConsumerWidget {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
 
-
     ref.listen(loginProvider, (prev, next) {
       next.when(data: (user) {
         Navigator.pop(context);
@@ -33,7 +32,7 @@ class LoginScreen extends HookConsumerWidget {
         print(user);
       }, error: (e, _) {
         Navigator.pop(context);
-        showSnackBarCustom(text: e.toString() ?? '');
+        showSnackBarCustom(text: e.toString());
       }, loading: () {
         loadingWithText();
       });
@@ -56,6 +55,7 @@ class LoginScreen extends HookConsumerWidget {
             labelText: 'Your Email',
             validator: (value) => value!.isValidEmail,
             controller: emailController,
+            keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(
             height: 15,
@@ -66,6 +66,7 @@ class LoginScreen extends HookConsumerWidget {
             validator: (value) => value!.isValidPassword,
             isPassword: true,
             controller: passwordController,
+            keyboardType: TextInputType.visiblePassword,
           ),
           TextButton(
               onPressed: () {

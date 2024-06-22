@@ -8,6 +8,7 @@ import 'package:uninet/feature/auth/screen/reset_passwrod_info_screen.dart';
 import 'package:uninet/feature/mainApp/screens/main_app_screen.dart';
 import 'package:uninet/feature/posts/screens/create_new_post_screen.dart';
 import 'package:uninet/feature/profile/screens/complete_profile_screen.dart';
+import 'package:uninet/feature/settings/screens/settings_screen.dart';
 import 'package:uninet/feature/verification/screens/verification_screen.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -48,6 +49,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case RouteName.resetPasswordInfoScreen:
       return MaterialPageRoute(
         builder: (context) => const ResetPasswordInfoScreen(),
+      );
+    case RouteName.settingsScreen:
+      return MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
       );
     default:
       return MaterialPageRoute(

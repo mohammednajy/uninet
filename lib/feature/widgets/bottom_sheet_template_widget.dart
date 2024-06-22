@@ -19,9 +19,16 @@ class BottomSheetTemplateWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: context.style.headlineLarge),
-              const Spacer(),
+              Expanded(
+                child: Text(
+                  title,
+                  style: context.style.headlineLarge,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              // const Spacer(),
               IconButton(
                   onPressed: () {
                     RouteManager.pop();

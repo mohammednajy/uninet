@@ -4,19 +4,25 @@ import 'package:uninet/core/utils/constant.dart';
 import 'package:uninet/core/utils/extensions.dart';
 
 class HeadlineAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HeadlineAppBar({
-    super.key,
-    this.leading = true,
-    required this.title,
-  });
+  const HeadlineAppBar(
+      {super.key, this.leading = true, required this.title, this.trailing});
   final String title;
   final bool leading;
+  final Widget? trailing;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: false,
       backgroundColor: ColorManager.background,
       elevation: 0,
+      actions: trailing != null
+          ? [
+              trailing!,
+              const SizedBox(
+                width: 20,
+              ),
+            ]
+          : [],
       leading: leading
           ? IconButton(
               onPressed: () {

@@ -40,3 +40,43 @@ double height =
     MediaQuery.of(RouteManager.navigatorKey.currentContext!).size.height;
 double width =
     MediaQuery.of(RouteManager.navigatorKey.currentContext!).size.width;
+
+List<String> countries = [
+  'Algeria',
+  'Bahrain',
+  'Comoros',
+  'Djibouti',
+  'Egypt',
+  'Iraq',
+  'Jordan',
+  'Kuwait',
+  'Lebanon',
+  'Libya',
+  'Mauritania',
+  'Morocco',
+  'Oman',
+  'Palestine',
+  'Qatar',
+  'Saudi Arabia',
+  'Somalia',
+  'Sudan',
+  'Syria',
+  'Tunisia',
+  'United Arab Emirates',
+  'Yemen'
+];
+
+List<String> chasingCategoryList = [
+  "Technology",
+  "Fashion",
+  "Travel",
+  "Food",
+  "Health & Fitness",
+  "Entertainment",
+  "Sports",
+  "Art & Design",
+  "Education",
+  "Gaming",
+  "Photography",
+  "others"
+];

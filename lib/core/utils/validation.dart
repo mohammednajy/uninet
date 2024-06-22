@@ -51,4 +51,19 @@ extension ValidationExt on String {
     }
     return result;
   }
+
+  String? get isValidUsername {
+    String? result;
+    if (isEmpty) {
+      result = 'This field is required';
+    } else if (!RegExp(
+            r'^[a-zA-Z0-9_](?:[a-zA-Z0-9_]|(?:\.[a-zA-Z0-9_])){0,29}$')
+        .hasMatch(this)) {
+      result =
+          'Invalid username. Please use only letters, numbers, underscores, and periods.';
+    } else if (this.length < 2) {
+      result = 'username must grater than two characters';
+    }
+    return result;
+  }
 }

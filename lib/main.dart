@@ -35,13 +35,13 @@ void main() async {
 class UniNet extends StatelessWidget {
   const UniNet({super.key});
 
-@override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: RouteManager.navigatorKey,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: RouteName.authRoute,
+      initialRoute: RouteName.mainAppScreen,
       theme: ThemeManager.lightTheme,
     );
   }
