@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/feature/verification/widgets/upload_file_widget.dart';
-import 'package:uninet/feature/widgets/bottom_sheet_template_widget.dart';
+import 'upload_file_widget.dart';
+import '../../widgets/bottom_sheet_template_widget.dart';
 
 showSheet(
   BuildContext context, {

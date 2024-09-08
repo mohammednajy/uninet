@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/utils/validation.dart';
-import 'package:uninet/core/utils/extensions.dart';
+import '../../../core/router/routing.dart';
+import '../../../core/utils/validation.dart';
+import '../../../core/utils/extensions.dart';
 
 import '../../../core/utils/constant.dart';
 import '../../widgets/textField_widget.dart';

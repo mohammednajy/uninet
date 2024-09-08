@@ -1,68 +1,42 @@
-
-import 'dart:convert';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// import '../../../modules/auth/models/user_model.dart';
+class SharedPreferencesService {
+  final SharedPreferences _prefs;
 
+  SharedPreferencesService(this._prefs);
 
-enum PrefKeys {
-  user,
-  isLoggedIn,
-  onBoarding,
-}
-
-class SharedPrefController {
-  static final _instance = SharedPrefController._();
-
-  factory SharedPrefController() {
-    return _instance;
+  Future<void> saveString(String key, String value) async {
+    await _prefs.setString(key, value);
   }
 
-  late SharedPreferences preferences;
-
-  
-  SharedPrefController._();
-
-  Future<void> init() async {
-    preferences = await SharedPreferences.getInstance();
+  String? getString(String key) {
+    return _prefs.getString(key);
   }
 
-  // save(UserModel user) async {
-  //   String userEncoded = jsonEncode(user.toJsonUser());
-  //   await preferences.setString(
-  //     PrefKeys.user.toString(),
-  //     userEncoded,
-  //   );
-  // }
-
-  // UserModel getUser() {
-  //   String userJson = preferences.getString(PrefKeys.user.toString()) ?? '';
-  //   final userObject = jsonDecode(userJson);
-  //   return UserModel.fromJson(userObject);
-  // }
-
-  isLoggedIn({required bool value}) {
-    preferences.setBool(PrefKeys.isLoggedIn.toString(), value);
+  Future<void> removeString(String key) async {
+    await _prefs.remove(key);
   }
 
-  bool getLoggedIn() {
-    return preferences.getBool(PrefKeys.isLoggedIn.toString()) ?? false;
+  Future<void> saveBool(String key, bool value) async {
+    await _prefs.setBool(key, value);
   }
 
-  setOnBoarding({required bool value}) {
-    preferences.setBool(PrefKeys.onBoarding.toString(), value);
+  bool? getBool(String key) {
+    return _prefs.getBool(key);
   }
 
-  bool getOnBoarding() {
-    return preferences.getBool(PrefKeys.onBoarding.toString()) ?? false;
+  Future<void> removeBool(String key) async {
+    await _prefs.remove(key);
   }
 
-  clear() {
-    preferences.clear();
-  }
-
-  remove() {
-    preferences.remove(PrefKeys.user.toString());
+  cancelSharedPref() async {
+    await _prefs.clear();
   }
 }
+
+final sharedPreferencesProvider =
+    FutureProvider<SharedPreferencesService>((ref) async {
+  final prefs = await SharedPreferences.getInstance();
+  return SharedPreferencesService(prefs);
+});

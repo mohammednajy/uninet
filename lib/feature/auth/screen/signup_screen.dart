@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:uninet/core/utils/validation.dart';
-import 'package:uninet/feature/auth/provider/singup_provider.dart';
-import 'package:uninet/feature/auth/repo/auth_repo.dart';
-import 'package:uninet/feature/widgets/loading_widget.dart';
+import '../../../core/router/routes_name.dart';
+import '../../../core/router/routing.dart';
+import '../../../core/utils/validation.dart';
+import '../provider/singup_provider.dart';
+import '../repo/auth_repo.dart';
+import '../../widgets/loading_widget.dart';
 
 import '../../../core/utils/constant.dart';
 import '../../widgets/snackbar_widget.dart';
 import '../../widgets/textField_widget.dart';
 import 'widgets/social_media_widget.dart';
-import 'package:uninet/core/utils/extensions.dart';
+import '../../../core/utils/extensions.dart';
 
 class SignUpScreen extends HookConsumerWidget {
   const SignUpScreen({super.key});
@@ -26,7 +28,8 @@ class SignUpScreen extends HookConsumerWidget {
         Navigator.pop(context);
         showSnackBarCustom(
             text: 'Registered successfully', backgroundColor: Colors.green);
-        ref.read(authIndexRoute.notifier).state = 0;
+        // ref.read(authIndexRoute.notifier).state = 0;
+        RouteManager.goToAndRemove(RouteName.verificationScreen);
       }, error: (e, _) {
         Navigator.pop(context);
         showSnackBarCustom(text: e.toString() ?? '');

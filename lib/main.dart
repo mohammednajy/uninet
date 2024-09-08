@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uninet/core/router/route.dart';
-import 'package:uninet/core/router/routes_name.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/services/remoteServices/firebase_init.dart';
-import 'package:uninet/core/utils/theme_manager.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'app_startup.dart';
 
 import 'firebase_options.dart';
 
@@ -23,26 +20,10 @@ void main() async {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   ));
-  setUp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  runApp(const ProviderScope(child: UniNet()));
+  runApp(const ProviderScope(child: AppStartUp()));
   FlutterNativeSplash.remove();
-}
-
-class UniNet extends StatelessWidget {
-  const UniNet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: RouteManager.navigatorKey,
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: onGenerateRoute,
-      initialRoute: RouteName.mainAppScreen,
-      theme: ThemeManager.lightTheme,
-    );
-  }
 }

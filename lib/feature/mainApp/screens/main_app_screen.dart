@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:uninet/core/router/routes_name.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/feature/community/screens/community_screen.dart';
-import 'package:uninet/feature/home/screens/home_screen.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/feature/messages/screens/messages_screen.dart';
-import 'package:uninet/feature/profile/screens/profile_screen.dart';
+import '../../../core/router/routes_name.dart';
+import '../../../core/router/routing.dart';
+import '../../community/screens/community_screen.dart';
+import '../../home/screens/home_screen.dart';
+import '../../../core/utils/constant.dart';
+import '../../messages/screens/messages_screen.dart';
+import '../../profile/screens/profile_screen.dart';
 
 class MainAppScreen extends StatefulWidget {
   const MainAppScreen({super.key});

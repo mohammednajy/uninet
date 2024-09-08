@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uninet/feature/posts/model/post_model.dart';
-import 'package:uninet/feature/posts/repo/post_repository.dart';
-import 'package:uninet/feature/verification/providers/verification_provider.dart';
+import '../model/post_model.dart';
+import '../repo/post_repository.dart';
+import '../../verification/providers/verification_provider.dart';
 
 final suggestionImagesPostProvider = FutureProvider.autoDispose((ref) {
   return ref.read(postRepositoryProvider).suggestionImages();

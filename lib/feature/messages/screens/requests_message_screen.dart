@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/core/utils/extensions.dart';
+import '../../../core/utils/constant.dart';
+import '../../../core/utils/extensions.dart';
 
 class RequestsMessageScreen extends HookConsumerWidget {
   const RequestsMessageScreen({super.key});

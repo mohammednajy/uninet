@@ -1,19 +1,23 @@
-import 'package:dartz/dartz.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/services/remoteServices/firebase_init.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/core/utils/extensions.dart';
-import 'package:uninet/feature/auth/models/user_model.dart';
-import 'package:uninet/feature/posts/model/post_model.dart';
-import 'package:uninet/feature/posts/providers/create_post_provider.dart';
-import 'package:uninet/feature/widgets/bottom_sheet_template_widget.dart';
-import 'package:uninet/feature/widgets/headline_appbar.dart';
-import 'package:uninet/feature/widgets/loading_widget.dart';
-import 'package:uninet/feature/widgets/snackbar_widget.dart';
+import 'package:uninet/core/router/routes_name.dart';
+import 'package:uninet/feature/auth/provider/get_user_provider.dart';
+import 'package:uninet/feature/auth/provider/redirect_route_provider.dart';
+import 'package:uninet/feature/widgets/show_dialgo_widget.dart';
+import '../../../core/router/routing.dart';
+import '../../../core/services/remoteServices/firebase_init.dart';
+import '../../../core/utils/constant.dart';
+import '../../../core/utils/extensions.dart';
+import '../../auth/models/user_model.dart';
+import '../model/post_model.dart';
+import '../providers/create_post_provider.dart';
+import '../../widgets/bottom_sheet_template_widget.dart';
+import '../../widgets/headline_appbar.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/snackbar_widget.dart';
 
 class CreateNewPostScreen extends HookConsumerWidget {
   const CreateNewPostScreen({super.key});
@@ -27,7 +31,7 @@ class CreateNewPostScreen extends HookConsumerWidget {
     final suggestionImagesPost = ref.watch(suggestionImagesPostProvider);
 
     final pickImages = ref.watch(pickImagesProvider);
-
+    final userData = ref.watch(userDataProvider);
     useEffect(() {
       void listener() {
         currentText.value = postController.text;
@@ -51,7 +55,6 @@ class CreateNewPostScreen extends HookConsumerWidget {
         Navigator.pop(context);
       }, error: (error, _) {
         Navigator.pop(context);
-
         showSnackBarCustom(text: error.toString(), backgroundColor: Colors.red);
       }, loading: () {
         loadingWithText();
@@ -64,23 +67,35 @@ class CreateNewPostScreen extends HookConsumerWidget {
           onPressed: currentText.value.isEmpty
               ? null
               : () async {
-                  final user = ref.read(firebaseAuthProvider).currentUser;
-                  final post = Post(
-                      description: postController.text,
-                      chasingCategory: chasingCategory.value,
-                      userModel: UserModel(
-                        email: user?.email ?? '',
-                        userId: user?.uid ?? '',
-                        image: user?.photoURL,
-                        userName: user?.displayName,
-                      ),
-                      likes: 0,
-                      retweet: 0,
-                      comment: []);
+                  final value =
+                      ref.read(redirectRouteProvider).getProfileProgress();
+                  if (value) {
+                    userData.whenData((value) async {
+                      print('create new post success');
+                      final post = Post(
+                          timeStamp: Timestamp.now(),
+                          description: postController.text,
+                          chasingCategory: chasingCategory.value,
+                          userModel: value,
+                          likes: [],
+                          retweet: [],
+                          comment: []);
 
-                  await ref
-                      .read(createNewPostProvider.notifier)
-                      .createNewPost(post);
+                      await ref
+                          .read(createNewPostProvider.notifier)
+                          .createNewPost(post);
+                    });
+                  } else {
+                    final value = await customDialogWidget(
+                      context,
+                      message:
+                          'You need to complete you profile, to be able create posts',
+                      buttonColor: ColorManager.blue,
+                    );
+                    if (value != null && value) {
+                      RouteManager.pushNamed(RouteName.completeProfileScreen);
+                    }
+                  }
                 },
           style: ElevatedButton.styleFrom(minimumSize: const Size(100, 40)),
           child: const Text('Post'),

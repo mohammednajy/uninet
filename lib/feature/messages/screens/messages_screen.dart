@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/feature/community/screens/community_screen.dart';
-import 'package:uninet/feature/messages/screens/inbox_message_screen.dart';
-import 'package:uninet/feature/messages/screens/requests_message_screen.dart';
+import '../../../core/utils/constant.dart';
+import '../../community/screens/community_screen.dart';
+import 'inbox_message_screen.dart';
+import 'requests_message_screen.dart';
 
 class MessagesScreen extends HookConsumerWidget {
   const MessagesScreen({super.key});
@@ -71,9 +71,9 @@ class MessagesScreen extends HookConsumerWidget {
                 Expanded(
                     child: IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   style: IconButton.styleFrom(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       minimumSize: Size(width, 50),
                       backgroundColor: Colors.grey.shade300,

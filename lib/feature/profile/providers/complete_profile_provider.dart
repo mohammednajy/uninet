@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:uninet/feature/profile/repo/profile_repository.dart';
+import '../repo/profile_repository.dart';
 
 import '../../verification/repo/verification_repository.dart';
 

@@ -3,14 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:uninet/core/services/remoteServices/firebase_init.dart';
-import 'package:uninet/core/utils/auth_exception.dart';
-import 'package:uninet/feature/auth/models/user_model.dart';
+import '../../../core/services/localServices/sherd_perf_manager.dart';
+import '../../../core/services/remoteServices/firebase_init.dart';
+import '../../../core/utils/auth_exception.dart';
+import '../../../core/utils/extensions.dart';
+import '../models/user_model.dart';
 
-class AuthRepository {
+class sharedPreference {
   final Ref ref;
 
-  AuthRepository({required this.ref});
+  sharedPreference({required this.ref});
 
   Future<Either<String, User>> login(
       {required String email, required String password}) async {
@@ -19,12 +21,18 @@ class AuthRepository {
           .read(firebaseAuthProvider)
           .signInWithEmailAndPassword(email: email, password: password);
       if (credential.user != null) {
+        final userModel = UserModel(
+          email: email,
+          userId: credential.user!.uid,
+          image: credential.user?.photoURL,
+          displayName: credential.user?.displayName,
+          name: credential.user?.displayName,
+        );
+        saveUser(userModel);
         return right(credential.user!);
       }
       return left('unexpected error occurred, try agin');
     } on FirebaseAuthException catch (e) {
-      print('=================================');
-      print(e);
       return left(AuthException.handleLoginException(e));
     } catch (e) {
       return left('Something went wrong');
@@ -42,6 +50,7 @@ class AuthRepository {
       print(credential.user);
       if (credential.user != null) {
         final value = await createAccount(user: credential.user!);
+
         if (value) {
           return right(credential.user!);
         } else {
@@ -132,25 +141,74 @@ class AuthRepository {
     required User user,
   }) async {
     try {
+      final userModel = UserModel(
+        email: user.email!,
+        userId: user.uid,
+        image: user.photoURL,
+        displayName: user.displayName,
+        name: user.displayName,
+      );
+
       await ref
           .read(firebaseFireStoreProvider)
           .collection('users')
-          .add(UserModel(
-            email: user.email!,
-            userId: user.uid,
-            image: user.photoURL,
-            displayName: user.displayName,
-            name: user.displayName,
-          ).toMap());
+          .add(userModel.toMap());
+      saveUser(userModel);
       return true;
     } on FirebaseException catch (e) {
-      print(e);
       return false;
     }
+  }
+
+  Future<Either<String, bool>> logout() async {
+    try {
+      await ref.read(firebaseAuthProvider).signOut();
+      await removeUser();
+
+      // await GoogleSignIn().disconnect();
+      return right(true);
+    } on FirebaseException catch (e) {
+      return left(e.code);
+    } catch (e) {
+      return left('something went wrong try agin');
+    }
+  }
+
+  Future<UserModel> getRemoteUserData() async {
+    try {
+      final userId = ref.read(firebaseAuthProvider).currentUser!.uid;
+      final value = await ref
+          .read(firebaseFireStoreProvider)
+          .collection('users')
+          .where('userId', isEqualTo: userId)
+          .get();
+      return UserModel.fromMap(value.docs.single.data());
+    } on FirebaseException catch (e) {
+      throw e.code;
+    } catch (e) {
+      throw 'Something went wrong';
+    }
+  }
+
+// this is for saving the user local inside sharedPreferance and used to mange the routes.
+  saveUser(UserModel user) {
+    final sharedPref = ref.watch(sharedPreferencesProvider).requireValue;
+    sharedPref.saveString(PrefKeys.user.toString(), user.toJson());
+  }
+
+  UserModel? getUser() {
+    final sharedPref = ref.watch(sharedPreferencesProvider).requireValue;
+    final jsonUser = sharedPref.getString(PrefKeys.user.toString());
+    return jsonUser != null ? UserModel.fromJson(jsonUser) : null;
+  }
+
+  removeUser() async {
+    final sharedPref = ref.watch(sharedPreferencesProvider).requireValue;
+    await sharedPref.removeString(PrefKeys.user.toString());
   }
 }
 
 final authRepoProvider =
-    Provider<AuthRepository>((ref) => AuthRepository(ref: ref));
+    Provider<sharedPreference>((ref) => sharedPreference(ref: ref));
 
 final authIndexRoute = StateProvider<int>((ref) => 0);

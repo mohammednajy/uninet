@@ -8,10 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:uninet/core/services/remoteServices/firebase_init.dart';
-import 'package:uninet/core/utils/firestore_exception.dart';
-import 'package:uninet/feature/posts/model/post_model.dart';
-import 'package:uninet/feature/profile/repo/profile_repository.dart';
+import '../../../core/services/remoteServices/firebase_init.dart';
+import '../../../core/utils/firestore_exception.dart';
+import '../model/post_model.dart';
 
 class PostRepository {
   Ref ref;
@@ -28,6 +27,8 @@ class PostRepository {
           .get();
       return response.get('images');
     } on FirebaseException catch (e) {
+      print('\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\');
+      print(e.code);
       throw FireStoreException.handlingFireStoreException(e);
     } catch (e) {
       rethrow;
@@ -42,6 +43,8 @@ class PostRepository {
       }
       return left('Something went wrong, try again');
     } on Exception catch (e) {
+      print('-----------------------------------');
+      print(e);
       debugPrint(e.toString());
       return left('Something went wrong, try again');
     }
@@ -55,6 +58,8 @@ class PostRepository {
           .add(post.toMap());
       return right(true);
     } on FirebaseException catch (e) {
+      print('================================');
+      print(e.code);
       return left(FireStoreException.handlingFireStoreException(e));
     }
   }
@@ -70,6 +75,8 @@ class PostRepository {
           .putFile(image);
       return right(await value.ref.getDownloadURL());
     } on FirebaseException catch (e) {
+      print('1111111111111111111111111111111');
+      print(e.code);
       return left(FireStoreException.handlingFireStoreException(e));
     }
   }

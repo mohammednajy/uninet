@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/core/router/routes_name.dart';
-import 'package:uninet/feature/auth/screen/auth_screen.dart';
-import 'package:uninet/feature/auth/screen/code_otp_screen.dart';
-import 'package:uninet/feature/auth/screen/new_password_screen.dart';
-import 'package:uninet/feature/auth/screen/reset_password_screen.dart';
-import 'package:uninet/feature/auth/screen/reset_passwrod_info_screen.dart';
-import 'package:uninet/feature/mainApp/screens/main_app_screen.dart';
-import 'package:uninet/feature/posts/screens/create_new_post_screen.dart';
-import 'package:uninet/feature/profile/screens/complete_profile_screen.dart';
-import 'package:uninet/feature/settings/screens/settings_screen.dart';
-import 'package:uninet/feature/verification/screens/verification_screen.dart';
+import 'routes_name.dart';
+import '../../feature/auth/screen/auth_screen.dart';
+import '../../feature/auth/screen/code_otp_screen.dart';
+import '../../feature/auth/screen/new_password_screen.dart';
+import '../../feature/auth/screen/reset_password_screen.dart';
+import '../../feature/auth/screen/reset_passwrod_info_screen.dart';
+import '../../feature/mainApp/screens/main_app_screen.dart';
+import '../../feature/posts/screens/create_new_post_screen.dart';
+import '../../feature/profile/screens/complete_profile_screen.dart';
+import '../../feature/settings/screens/settings_screen.dart';
+import '../../feature/verification/screens/verification_screen.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:uninet/core/utils/constant.dart';
+import '../../core/utils/constant.dart';
 
-import 'package:uninet/core/utils/extensions.dart';
+import '../../core/utils/extensions.dart';
 
 class TextFieldWidget extends StatefulWidget {
   const TextFieldWidget({

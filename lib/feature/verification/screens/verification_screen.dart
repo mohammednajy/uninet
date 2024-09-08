@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:uninet/feature/verification/providers/verification_provider.dart';
-import 'package:uninet/feature/verification/widgets/file_bottom_sheet.dart';
-import 'package:uninet/feature/verification/widgets/upload_file_widget.dart';
-import 'package:uninet/core/router/routes_name.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/utils/extensions.dart';
-import 'package:uninet/feature/widgets/snackbar_widget.dart';
+import '../../auth/provider/redirect_route_provider.dart';
+import '../providers/verification_provider.dart';
+import '../widgets/file_bottom_sheet.dart';
+import '../widgets/upload_file_widget.dart';
+import '../../../core/router/routes_name.dart';
+import '../../../core/router/routing.dart';
+import '../../../core/utils/extensions.dart';
+import '../../widgets/snackbar_widget.dart';
 
 import '../../widgets/headline_appbar.dart';
 import '../../widgets/loading_widget.dart';
@@ -29,7 +30,7 @@ class VerificationScreen extends HookConsumerWidget {
         RouteManager.goToAndRemove(RouteName.completeProfileScreen);
         showSnackBarCustom(
             text: 'uploaded successfully', backgroundColor: Colors.green);
-        print(url);
+        ref.read(redirectRouteProvider).setVerificationProgress();
       }, error: (e, _) {
         Navigator.pop(context);
         showSnackBarCustom(text: e.toString());

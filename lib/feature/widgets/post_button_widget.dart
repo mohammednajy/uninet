@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:uninet/core/utils/constant.dart';
+import '../../core/utils/constant.dart';
 
 
 class PostButton extends StatelessWidget {

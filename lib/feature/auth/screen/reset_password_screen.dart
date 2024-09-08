@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:uninet/core/router/routes_name.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/core/utils/extensions.dart';
-import 'package:uninet/core/utils/validation.dart';
-import 'package:uninet/feature/auth/provider/reset_password_provider.dart';
-import 'package:uninet/feature/widgets/loading_widget.dart';
-import 'package:uninet/feature/widgets/snackbar_widget.dart';
+import '../../../core/router/routes_name.dart';
+import '../../../core/router/routing.dart';
+import '../../../core/utils/constant.dart';
+import '../../../core/utils/extensions.dart';
+import '../../../core/utils/validation.dart';
+import '../provider/reset_password_provider.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/snackbar_widget.dart';
 
 import '../../widgets/textField_widget.dart';
 import '../../widgets/headline_appbar.dart';

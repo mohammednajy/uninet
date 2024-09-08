@@ -8,6 +8,7 @@ class ColorManager {
   static const Color green = Color(0xFF76D676);
   static const Color blue = Color(0xFF4169E1);
   static const Color background = Color(0xFFF5F5F5);
+  static const Color blueBackground = Color(0xFFDFEAF5);
 }
 
 class AssetPath {

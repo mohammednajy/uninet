@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/utils/constant.dart';
+import '../../core/router/routing.dart';
+import '../../core/utils/constant.dart';
 
 loadingWithText({
   String? text,

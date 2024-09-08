@@ -1,8 +1,9 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/core/utils/extensions.dart';
-import 'package:uninet/feature/widgets/decorated_button.dart';
+import '../../../core/utils/constant.dart';
+import '../../../core/utils/extensions.dart';
+import '../../widgets/decorated_button.dart';
 
 class CommunityScreen extends StatelessWidget {
   const CommunityScreen({super.key});
@@ -14,10 +15,28 @@ class CommunityScreen extends StatelessWidget {
         title: "Community",
       ),
       body: ListView(
-        children: [],
+        children: [
+          
+        ],
       ),
     );
   }
+
+  int completxTaks1() {
+    int total = 0;
+    for (int i = 0; i <= 10000; ++i) {
+      total += i;
+    }
+    return total;
+  }
+}
+
+completxTaks2(SendPort sendPort) {
+  int total = 0;
+  for (int i = 0; i <= 1000000000; ++i) {
+    total += i;
+  }
+  sendPort.send(total);
 }
 
 class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uninet/core/services/remoteServices/firebase_init.dart';
+import '../../../core/services/remoteServices/firebase_init.dart';
 
 class ProfileRepository {
   ProfileRepository({required this.ref});

@@ -2,11 +2,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:provider/provider.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/feature/auth/repo/auth_repo.dart';
-import 'package:uninet/feature/auth/screen/login_screen.dart';
-import 'package:uninet/feature/auth/screen/signup_screen.dart';
-import 'package:uninet/core/utils/extensions.dart';
+import '../../../core/services/localServices/sherd_perf_manager.dart';
+import '../../../core/utils/constant.dart';
+import '../repo/auth_repo.dart';
+import 'login_screen.dart';
+import 'signup_screen.dart';
+import '../../../core/utils/extensions.dart';
 
 class AuthScreen extends HookConsumerWidget {
   const AuthScreen({super.key});

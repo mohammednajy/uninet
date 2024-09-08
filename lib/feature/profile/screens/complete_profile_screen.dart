@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:uninet/core/router/routes_name.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/feature/auth/models/user_model.dart';
-import 'package:uninet/feature/profile/providers/complete_profile_provider.dart';
-import 'package:uninet/feature/verification/widgets/upload_file_widget.dart';
-import 'package:uninet/feature/widgets/bottom_sheet_template_widget.dart';
-import 'package:uninet/feature/widgets/headline_appbar.dart';
-import 'package:uninet/feature/widgets/loading_widget.dart';
-import 'package:uninet/feature/widgets/snackbar_widget.dart';
-import 'package:uninet/feature/widgets/textField_widget.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/utils/extensions.dart';
-import 'package:uninet/core/utils/validation.dart';
+import '../../../core/router/routes_name.dart';
+import '../../../core/utils/constant.dart';
+import '../../auth/models/user_model.dart';
+import '../../auth/provider/redirect_route_provider.dart';
+import '../providers/complete_profile_provider.dart';
+import '../../verification/widgets/upload_file_widget.dart';
+import '../../widgets/bottom_sheet_template_widget.dart';
+import '../../widgets/headline_appbar.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/snackbar_widget.dart';
+import '../../widgets/textField_widget.dart';
+import '../../../core/router/routing.dart';
+import '../../../core/utils/extensions.dart';
+import '../../../core/utils/validation.dart';
 
 class CompleteProfileScreen extends HookConsumerWidget {
   const CompleteProfileScreen({super.key});
@@ -44,6 +45,7 @@ class CompleteProfileScreen extends HookConsumerWidget {
         Navigator.pop(context);
         showSnackBarCustom(
             text: 'uploaded successfully', backgroundColor: Colors.green);
+        ref.read(redirectRouteProvider).setProfileProgress();
       }, error: (e, _) {
         Navigator.pop(context);
         showSnackBarCustom(text: e.toString());
@@ -392,7 +394,6 @@ class CompleteProfileScreen extends HookConsumerWidget {
                             image: uploadImage.value!,
                             userName: userName.text,
                             displayName: displayName.text,
-                            
                             name: '${firstName.text} ${lastName.text}',
                             bio: bio.text,
                             date: selectedDate.value.toString(),

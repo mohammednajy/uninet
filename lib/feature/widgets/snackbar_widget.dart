@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/core/router/routing.dart';
+import '../../core/router/routing.dart';
 
 showSnackBarCustom({
   Color? backgroundColor,

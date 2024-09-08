@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/core/router/routes_name.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/utils/constant.dart';
-import 'package:uninet/feature/widgets/headline_appbar.dart';
+import '../../../core/router/routes_name.dart';
+import '../../../core/router/routing.dart';
+import '../../../core/utils/constant.dart';
+import '../../widgets/headline_appbar.dart';
 
 class ResetPasswordInfoScreen extends StatelessWidget {
   const ResetPasswordInfoScreen({super.key});

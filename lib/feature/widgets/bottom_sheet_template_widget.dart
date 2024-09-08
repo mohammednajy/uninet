@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:uninet/core/router/routing.dart';
-import 'package:uninet/core/utils/extensions.dart';
+import '../../core/router/routing.dart';
+import '../../core/utils/extensions.dart';
 
 class BottomSheetTemplateWidget extends StatelessWidget {
-  const BottomSheetTemplateWidget(
-      {super.key, required this.title, required this.widget});
+  const BottomSheetTemplateWidget({
+    super.key,
+    required this.title,
+    required this.widget,
+  });
   final String title;
   final Widget widget;
   @override
